@@ -1,0 +1,1 @@
+console.log('TypeScript with ESM is working!');

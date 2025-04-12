@@ -1,0 +1,14 @@
+{
+  "minDiscountPercentage": 60,
+  "maxProductsPerCategory": 25,
+  "maxScrollAttempts": 1,
+  "scrollWaitTime": 1000,
+  "locations": [
+    {
+      "latitude": 12.9715987,
+      "longitude": 77.594566,
+      "name": "Bangalore"
+    }
+  ],
+  "categories": ["Fresh Vegetables", "Fresh Fruits"]
+}
