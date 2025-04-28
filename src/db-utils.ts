@@ -1,12 +1,12 @@
-import { join, dirname } from "path";
-import { Low } from "lowdb";
-import { JSONFile } from "lowdb/node";
-import { fileURLToPath } from "url";
-import { Schema, SentPost } from "./db-types.js";
-import crypto from "crypto";
+import { join, dirname } from 'path';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+import { fileURLToPath } from 'url';
+import { Schema, SentPost } from './db-types.js';
+import crypto from 'crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbFile = join(__dirname, "..", "db.json");
+const dbFile = join(__dirname, '..', 'db.json');
 
 class Database {
   private db: Low<Schema>;
@@ -22,10 +22,10 @@ class Database {
   }
 
   generateId(filePath: string): string {
-    return crypto.createHash("sha256").update(filePath).digest("hex");
+    return crypto.createHash('sha256').update(filePath).digest('hex');
   }
 
-  async addSentPost(post: Omit<SentPost, "timestamp">): Promise<void> {
+  async addSentPost(post: Omit<SentPost, 'timestamp'>): Promise<void> {
     await this.db.read();
 
     const newPost: SentPost = {
@@ -34,30 +34,30 @@ class Database {
     };
 
     // Check If the post already exists
-    const existingPost = this.db.data.sentPosts.find(
-      (p) => p.id === newPost.id
-    );
+    const existingPost = this.db.data.sentPosts.find((p) => p.id === newPost.id);
     if (existingPost) {
       // Update the timestamp if the post already exists
       existingPost.timestamp = newPost.timestamp;
-      this.db.data.sentPosts = this.db.data.sentPosts.filter(
-        (p) => p.id !== newPost.id
-      );
+      this.db.data.sentPosts = this.db.data.sentPosts.filter((p) => p.id !== newPost.id);
       this.db.data.sentPosts.push(existingPost);
-      console.log("Updated existing post:", existingPost);
+      console.log('Updated existing post:', existingPost);
     } else {
       this.db.data.sentPosts.push(newPost);
     }
     await this.db.write();
   }
 
-  async wasPostSent(id: string): Promise<boolean> {
-    await this.db.read();
-    return this.db.data.sentPosts.some(
-      (post) =>
-        // Check if the ID matches and the post is within the last 3 hours
-        post.id === id && post.timestamp > Date.now() - 3 * 60 * 60 * 1000
-    );
+  async wasPostSent(_id: string, _location: string): Promise<boolean> {
+    // Let it be true for now
+    return false;
+    // await this.db.read();
+    // return this.db.data.sentPosts.some(
+    //   (post) =>
+    //     // Check if the ID matches and the post is within the last 3 hours
+    //     post.id === id &&
+    //     post.timestamp > Date.now() - 3 * 60 * 60 * 1000 &&
+    //     post.locationName === location
+    // );
   }
 }
 

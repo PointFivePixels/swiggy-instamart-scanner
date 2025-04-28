@@ -60,7 +60,8 @@ TELEGRAM_CHANNEL_ID=your_channel_id_here
     {
       "latitude": 12.9715987,
       "longitude": 77.594566,
-      "name": "Bangalore"
+      "name": "Bangalore",
+      "enabled": true
     }
   ],
   "categories": ["Fresh Vegetables", "Fresh Fruits"]

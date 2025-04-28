@@ -2,6 +2,7 @@ export interface Location {
   latitude: number;
   longitude: number;
   name: string;
+  enabled: boolean;
 }
 
 export interface TelegramConfig {
@@ -15,7 +16,7 @@ export interface Config {
   maxScrollAttempts: number;
   scrollWaitTime: number;
   locations: Location[];
-  categories: string[];
+  categories: { name: string; enabled: boolean }[];
   telegram: TelegramConfig;
 }
 

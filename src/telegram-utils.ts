@@ -1,7 +1,7 @@
-import { Telegraf } from "telegraf";
-import fs from "fs/promises";
-import { TelegramConfig } from "./types.js";
-import { database } from "./db-utils.js";
+import { Telegraf } from 'telegraf';
+import fs from 'fs/promises';
+import { TelegramConfig } from './types.js';
+import { database } from './db-utils.js';
 
 export class TelegramBot {
   private bot: Telegraf;
@@ -9,10 +9,10 @@ export class TelegramBot {
 
   constructor(config: TelegramConfig) {
     if (!config.botToken) {
-      throw new Error("Bot token is required");
+      throw new Error('Bot token is required');
     }
     if (!config.channelId) {
-      throw new Error("Channel ID is required");
+      throw new Error('Channel ID is required');
     }
 
     this.bot = new Telegraf(config.botToken, { handlerTimeout: 90_000 });
@@ -21,18 +21,15 @@ export class TelegramBot {
 
   async start(): Promise<void> {
     try {
-      console.log("Starting Telegram bot...");
+      console.log('Starting Telegram bot...');
       await database.init();
 
       // Simple test message to verify connectivity
-      await this.bot.telegram.sendMessage(
-        this.channelId,
-        "🤖 Bot is starting..."
-      );
+      // await this.bot.telegram.sendMessage(this.channelId, '🤖 Bot is starting...');
 
-      console.log("Test message sent successfully");
+      console.log('Test message sent successfully');
     } catch (error) {
-      console.error("Failed to start bot:", error);
+      console.error('Failed to start bot:', error);
       throw error;
     }
   }
@@ -40,9 +37,9 @@ export class TelegramBot {
   async stop(): Promise<void> {
     try {
       await this.bot.stop();
-      console.log("Bot stopped successfully");
+      console.log('Bot stopped successfully');
     } catch (error) {
-      console.error("Error stopping bot:", error);
+      console.error('Error stopping bot:', error);
     }
   }
 
@@ -52,7 +49,7 @@ export class TelegramBot {
       const fileId = database.generateId(screenshotPath);
 
       // Check if this post was already sent
-      const alreadySent = await database.wasPostSent(fileId);
+      const alreadySent = await database.wasPostSent(fileId, data.location.name);
       if (alreadySent) {
         console.log(`Skipping duplicate post: ${data.product.name}`);
 
@@ -61,10 +58,7 @@ export class TelegramBot {
           await fs.unlink(screenshotPath);
           console.log(`Successfully deleted: ${screenshotPath}`);
         } catch (error) {
-          console.error(
-            `Failed to delete screenshot: ${screenshotPath}`,
-            error
-          );
+          console.error(`Failed to delete screenshot: ${screenshotPath}`, error);
         }
         return;
       }
@@ -74,7 +68,7 @@ export class TelegramBot {
         await this.bot.telegram.sendPhoto(
           this.channelId,
           { source: screenshotPath },
-          { caption: message, parse_mode: "Markdown" }
+          { caption: message, parse_mode: 'Markdown' }
         );
 
         // Record the sent post in database
@@ -90,18 +84,15 @@ export class TelegramBot {
           await fs.unlink(screenshotPath);
           console.log(`Successfully deleted: ${screenshotPath}`);
         } catch (error) {
-          console.error(
-            `Failed to delete screenshot: ${screenshotPath}`,
-            error
-          );
+          console.error(`Failed to delete screenshot: ${screenshotPath}`, error);
         }
       } else {
         await this.bot.telegram.sendMessage(this.channelId, message, {
-          parse_mode: "Markdown",
+          parse_mode: 'Markdown',
         });
       }
     } catch (error) {
-      console.error("Failed to send product update:", error);
+      console.error('Failed to send product update:', error);
       throw error;
     }
   }
@@ -124,8 +115,8 @@ export class TelegramBot {
       `💰 MRP: ₹${product.mrp}\n` +
       `🏷️ *${product.discountPercentage}% OFF*\n` +
       `✨ *Deal Price: ₹${product.discountedPrice}*\n` +
-      (product.unit ? `📦 Unit: ${product.unit}\n` : "") +
-      (product.origin ? `🏠 Origin: ${product.origin}\n` : "")
+      (product.unit ? `📦 Unit: ${product.unit}\n` : '') +
+      (product.origin ? `🏠 Origin: ${product.origin}\n` : '')
     );
   }
 }

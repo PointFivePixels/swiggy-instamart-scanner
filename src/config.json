@@ -5,10 +5,76 @@
   "scrollWaitTime": 1000,
   "locations": [
     {
-      "latitude": 12.9715987,
-      "longitude": 77.594566,
-      "name": "Bangalore"
+      "latitude": 21.2227297,
+      "longitude": 72.7908952,
+      "name": "surat_morabhagal",
+      "enabled": true
+    },
+    {
+      "latitude": 21.190694,
+      "longitude": 72.794139,
+      "name": "surat_adajan_gam",
+      "enabled": true
+    },
+    {
+      "latitude": 21.213099,
+      "longitude": 72.833626,
+      "name": "surat_katargam",
+      "enabled": true
+    },
+    {
+      "latitude": 21.196569,
+      "longitude": 72.8348596,
+      "name": "surat_zampa_bazar",
+      "enabled": true
+    },
+    {
+      "latitude": 18.4575214,
+      "longitude": 73.9353033,
+      "name": "pune_daud_shaikh",
+      "enabled": true
     }
   ],
-  "categories": ["Fresh Vegetables", "Fresh Fruits"]
+  "categories": [
+    { "name": "Fresh Vegetables", "enabled": true },
+    { "name": "Fresh Fruits", "enabled": true },
+    { "name": "Dairy, Bread and Eggs", "enabled": false },
+    { "name": "Oils and Ghee", "enabled": false },
+    { "name": "Masalas", "enabled": false },
+    { "name": "Cereals and Breakfast", "enabled": false },
+    { "name": "Atta, Rice and Dal", "enabled": false },
+    { "name": "Bakery", "enabled": false },
+    { "name": "Biscuits and Cakes", "enabled": false },
+    { "name": "Tea, Coffee and More", "enabled": false },
+    { "name": "Dry Fruits and Seeds Mix", "enabled": false },
+    { "name": "Meat and Seafood", "enabled": false },
+    { "name": "Cold Drinks and Juices", "enabled": false },
+    { "name": "Ice Creams and Frozen Desserts", "enabled": false },
+    { "name": "Chips and Namkeens", "enabled": false },
+    { "name": "Chocolates and Sweets", "enabled": false },
+    { "name": "Noodles, Pasta, Vermicelli", "enabled": false },
+    { "name": "Frozen Food", "enabled": false },
+    { "name": "Sauces and Spreads", "enabled": false },
+    { "name": "Paan Corner", "enabled": false },
+    { "name": "Bath and Body", "enabled": false },
+    { "name": "Hair Care", "enabled": false },
+    { "name": "Skincare", "enabled": false },
+    { "name": "Makeup", "enabled": false },
+    { "name": "Oral Care", "enabled": false },
+    { "name": "Grooming", "enabled": false },
+    { "name": "Baby Care", "enabled": false },
+    { "name": "Fragrances", "enabled": false },
+    { "name": "Protein and Supplements", "enabled": false },
+    { "name": "Feminine Hygiene", "enabled": false },
+    { "name": "Sexual Wellness", "enabled": false },
+    { "name": "Health and Pharma", "enabled": false },
+    { "name": "Home and Furnishing", "enabled": false },
+    { "name": "Kitchen and Dining", "enabled": false },
+    { "name": "Cleaning Essentials", "enabled": false },
+    { "name": "Fashion and Accessories", "enabled": false },
+    { "name": "Toys, Sports and Stationery", "enabled": false },
+    { "name": "Electronics", "enabled": false },
+    { "name": "Appliances", "enabled": false },
+    { "name": "Pet Supplies", "enabled": false }
+  ]
 }
